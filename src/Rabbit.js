@@ -6,6 +6,7 @@ class Rabbit extends Animal {
   constructor() {
     super();
     this.type = ENTITY_TYPES.RABBIT;
+    this.speed = 3;
   }
 }
 

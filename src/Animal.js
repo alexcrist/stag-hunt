@@ -1,6 +1,7 @@
 const Movable = require("./Movable");
 const vector = require("./vector");
 const { ENTITY_TYPES } = require("./constants");
+const { getPhantomPosition } = require("./util");
 
 class Animal extends Movable {
 
@@ -14,10 +15,22 @@ class Animal extends Movable {
     const playerPositions = worldState.entities
       .filter(entity => entity.type === ENTITY_TYPES.PLAYER)
       .map(player => player.position)
-      .map(vector.getTransformedPosition(this.position));
+      .map(getPhantomPosition(this.position));
+
+    const closestDistance = playerPositions.reduce((closest, position) => {
+      const distance = vector.distance(this.position, position);
+      if (distance < closest) {
+        return distance;
+      }
+      return closest;
+    }, 1000);
+
+    if (closestDistance > 500) {
+      this.direction = { x: 0, y: 0 };
+      return;
+    }
 
     let newDirection = { x: 0, y: 0 };
-
     for (const position of playerPositions) {
       const distance = vector.distance(this.position, position);
       const multiplier = distance === 0
