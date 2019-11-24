@@ -1,40 +1,32 @@
 const uuid = require("uuid/v4");
+const Movable = require("./Movable");
 
-const ACTIONS = {
-  STILL: "still",
-  UP: "up",
-  RIGHT: "right",
-  DOWN: "down",
-  LEFT: "left"
-};
+const PLAYER = "player";
 
-class Player {
+class Player extends Movable {
 
   constructor() {
+    super();
     this.id = uuid().slice(0, 7);
-    this.currentAction = ACTIONS.STILL;
-    this.position = {
-      x: 0,
-      y: 0
-    };
+    this.type = PLAYER;
   }
 
   handleKeyDown = (key) => {
     switch (key.toLowerCase()) {
       case "w":
-        this.currentAction = ACTIONS.UP;
+        this.direction = { x: 0, y: 1 };
         break;
 
       case "a":
-        this.currentAction = ACTIONS.LEFT;
+        this.direction = { x: -1, y: 0 };
         break;
 
       case "s":
-        this.currentAction = ACTIONS.DOWN;
+        this.direction = { x: 0, y: -1 };
         break;
 
       case "d":
-        this.currentAction = ACTIONS.RIGHT;
+        this.direction = { x: 1, y: 0 };
         break;
     }
   }
@@ -42,26 +34,26 @@ class Player {
   handleKeyUp = (key) => {
     switch (key.toLowerCase()) {
       case "w":
-        if (this.currentAction === ACTIONS.UP) {
-          this.currentAction = ACTIONS.STILL;
+        if (this.direction.x === 0 && this.direction.y === 1) {
+          this.direction = { x: 0, y: 0 };
         }
         break;
 
       case "a":
-        if (this.currentAction === ACTIONS.LEFT) {
-          this.currentAction = ACTIONS.STILL;
+        if (this.direction.x === 1 && this.direction.y === 0) {
+          this.direction = { x: 0, y: 0 };
         }
         break;
 
       case "s":
-        if (this.currentAction === ACTIONS.DOWN) {
-          this.currentAction = ACTIONS.STILL;
+        if (this.direction.x === 0 && this.direction.y === -1) {
+          this.direction = { x: 0, y: 0 };
         }
         break;
 
       case "d":
-        if (this.currentAction === ACTIONS.RIGHT) {
-          this.currentAction = ACTIONS.STILL;
+        if (this.direction.x === 1 && this.direction.y === 0) {
+          this.direction = { x: 0, y: 0 };
         }
         break;
     }
