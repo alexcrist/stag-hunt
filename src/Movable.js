@@ -3,7 +3,7 @@ class Movable {
   constructor(
     xPosition = 500,
     yPosition = 500,
-    speed = 10
+    speed = 6
   ) {
     this.position = {
       x: xPosition,
