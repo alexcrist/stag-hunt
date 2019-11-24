@@ -13,8 +13,40 @@
       const ON_KEY_UP = "keyup";
       const EVENT = "event";
       const WORLDSTATE = "worldstate";
+      const ENTITY_TYPES = {
+        PLAYER: "player",
+        RABBIT: "rabbit",
+        STAG: "stag"
+      };
 
       const socket = io();
+
+      const drawEntity = (entity) => {
+        // Get the canvas
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+
+        // Get the entity data
+        const entityPosition = entity.position;
+        const { x, y } = entityPosition;
+        // const x = Math.random() * 100;
+        // const y = Math.random() * 100;
+        const playerSize = 10;
+
+        // Draw the entity
+        switch (entity.type) {
+          case ENTITY_TYPES.PLAYER:
+            context.fillStyle = "rgb(235, 196, 145)";
+            break;
+          case ENTITY_TYPES.RABBIT:
+            context.fillStyle = "rgb(196, 188, 183)";
+            break;
+          case ENTITY_TYPES.STAG:
+            context.fillStyle = "rgb(92, 59, 36)";
+            break;
+        };
+        context.fillRect(x, y, playerSize, playerSize);
+      };
 
       socket.on(WORLDSTATE, worldState => {
         console.log(worldState);
@@ -27,16 +59,19 @@
         context.fillStyle = "rgb(32, 128, 53)";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Get the player data
-        const playerPosition = JSON.parse(worldState).entities[0].position;
-        const { x, y } = playerPosition;
-        // const x = Math.random() * 100;
-        // const y = Math.random() * 100;
-        const playerSize = 10;
+        // Draw all players
+        for (const entity of JSON.parse(worldState).entities) {
+          drawEntity(entity);
+        };
+        // const playerPosition = JSON.parse(worldState).entities[0].position;
+        // const { x, y } = playerPosition;
+        // // const x = Math.random() * 100;
+        // // const y = Math.random() * 100;
+        // const playerSize = 10;
 
-        // Draw the player
-        context.fillStyle = "rgb(235, 196, 145)";
-        context.fillRect(x, y, playerSize, playerSize);
+        // // Draw the player
+        // context.fillStyle = "rgb(235, 196, 145)";
+        // context.fillRect(x, y, playerSize, playerSize);
       });
 
       document.addEventListener(ON_KEY_DOWN, (event) => {
