@@ -6,7 +6,7 @@ class Stag extends Animal {
   constructor() {
     super();
     this.type = ENTITY_TYPES.STAG;
-    this.speed = 3;
+    this.speed = 8;
   }
 }
 
