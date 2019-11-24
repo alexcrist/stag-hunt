@@ -6,10 +6,3 @@ class Rabbit extends Movable {
 
   }
 }
-
-const c = {
-  a: 1,
-  b: 2
-}
-
-const { a, b, } = c;

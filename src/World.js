@@ -1,14 +1,13 @@
 const _ = require("lodash");
 
 const EVENT = "event";
-const SPEED = 1;
 
 class World {
 
   constructor(io) {
     this.io = io;
     this.worldState = {
-      players: []
+      entities: []
     };
 
     console.log("World created.");
@@ -16,16 +15,16 @@ class World {
 
   addPlayer = (player) => {
     console.log(`Adding player (${player.id})...`);
-    this.worldState.players.push(player);
+    this.worldState.entities.push(player);
   }
 
   removePlayer = (playerId) => {
     console.log(`Removing player (${playerId})...`)
     const playerIndex = _.findIndex(
-      this.worldState.players,
+      this.worldState.entities,
       player => player.id === playerId
     );
-    this.worldState.players.splice(playerIndex, 1);
+    this.worldState.entities.splice(playerIndex, 1);
   }
 
   update = () => {
