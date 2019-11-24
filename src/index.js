@@ -5,10 +5,7 @@ const socketio = require("socket.io")
 const World = require("./World");
 const Player = require("./Player");
 const ClientHandler = require("./ClientHandler");
-
-const PORT = 3000;
-const CONNECTION = "connection";
-const DISCONNECT = "disconnect";
+const { SOCKET, SERVER, RENDER } = require("./constants");
 
 const app = express();
 const server = http.createServer(app);
@@ -19,18 +16,18 @@ app.get("/", (_, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-io.on(CONNECTION, (socket) => {
+io.on(SOCKET.CONNECTION, (socket) => {
   // Create a new player
   const player = new Player();
   new ClientHandler(socket, player);
   world.addPlayer(player);
 
   // Destroy the player when they disconnect
-  socket.on(DISCONNECT, () => world.removePlayer(player.id));
+  socket.on(SOCKET.DISCONNECT, () => world.removePlayer(player.id));
 });
 
-server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+server.listen(SERVER.PORT, () => {
+  console.log(`Listening on port ${SERVER.PORT}`);
 });
 
-setInterval(world.update, 1000);
+setInterval(world.update, RENDER.REFRESH_INTERVAL);

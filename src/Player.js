@@ -1,14 +1,13 @@
 const uuid = require("uuid/v4");
 const Movable = require("./Movable");
-
-const PLAYER = "player";
+const { ENTITY_TYPES } = require("./constants");
 
 class Player extends Movable {
 
   constructor() {
     super();
     this.id = uuid().slice(0, 7);
-    this.type = PLAYER;
+    this.type = ENTITY_TYPES.PLAYER;
   }
 
   handleKeyDown = (key) => {

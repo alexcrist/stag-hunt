@@ -1,8 +1,8 @@
 class Movable {
 
   constructor(
-    xPosition = 0,
-    yPosition = 0,
+    xPosition = 500,
+    yPosition = 500,
     speed = 1
   ) {
     this.position = {

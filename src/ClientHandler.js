@@ -1,21 +1,22 @@
-const EVENT = "event";
-const KEY_UP = "keyup";
-const KEY_DOWN = "keydown";
+const { SOCKET, CLIENT_ACTIONS } = require("./constants");
 
 class ClientHandler {
 
   constructor(socket, player) {
     this.socket = socket;
     this.player = player;
-    socket.on(EVENT, this.handleEvent);
+    socket.on(SOCKET.EVENT, this.handleEvent);
     console.log(`Player connected (${player.id}).`);
   }
 
   handleEvent = (event) => {
     console.log(`New event from (${this.id})`, event);
-    if (event.action === KEY_DOWN) {
+
+    if (event.action === CLIENT_ACTIONS.KEY_DOWN) {
       this.player.handleKeyDown(event.key);
-    } else {
+    }
+
+    else if (event.action === CLIENT_ACTIONS.KEY_UP) {
       this.player.handleKeyUp(event.key);
     }
   }
