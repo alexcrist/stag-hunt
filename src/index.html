@@ -48,7 +48,7 @@
             playerSize = 8;
             break;
         };
-        context.fillRect(x, y, playerSize, playerSize);
+        context.fillRect(x - playerSize/2, y - playerSize/2, playerSize, playerSize);
       };
 
       socket.on(WORLDSTATE, worldState => {
