@@ -32,7 +32,7 @@ class World {
       entity.update(this.worldState);
     }
 
-    this.io.emit(SOCKET.EVENT, JSON.stringify(this.worldState));
+    this.io.emit(SOCKET.WORLD_STATE, JSON.stringify(this.worldState));
   }
 }
 

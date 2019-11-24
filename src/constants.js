@@ -13,6 +13,7 @@ const ENTITY_TYPES = {
 
 const SOCKET = {
   EVENT: "event",
+  WORLD_STATE: "worldstate",
   CONNECTION: "connection",
   DISCONNECT: "disconnect",
 };
