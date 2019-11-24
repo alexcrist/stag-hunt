@@ -1,7 +1,8 @@
 const _ = require("lodash");
 
-const { SOCKET, ENTITY_TYPES } = require("./constants");
+const { SOCKET } = require("./constants");
 const Rabbit = require("./Rabbit");
+const Stag = require("./Stag");
 
 class World {
 
@@ -16,6 +17,10 @@ class World {
 
   addRabbit = () => {
     this.worldState.entities.push(new Rabbit());
+  };
+
+  addStag = () => {
+    this.worldState.entities.push(new Stag());
   };
 
   addPlayer = (player) => {

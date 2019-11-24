@@ -1,6 +1,6 @@
 const uuid = require("uuid/v4");
 const Movable = require("./Movable");
-const { ENTITY_TYPES } = require("./constants");
+const { ENTITY_TYPES, SPEEDS } = require("./constants");
 
 class Player extends Movable {
 
@@ -8,12 +8,12 @@ class Player extends Movable {
     super();
     this.id = uuid().slice(0, 7);
     this.type = ENTITY_TYPES.PLAYER;
+    this.speed = SPEEDS.PLAYER;
     this.color = "rgb("
       + Math.round(Math.random() * 256).toString() + ", "
       + Math.round(Math.random() * 256).toString() + ", "
       + Math.round(Math.random() * 256).toString()
       + ")";
-    // this.color
   }
 
   handleKeyDown = (key) => {

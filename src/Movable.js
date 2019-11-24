@@ -1,21 +1,17 @@
-const { WORLD_BOUNDS } = require("./constants");
+const { WORLD_BOUNDS, POSITIONS, SPEEDS } = require("./constants");
 
 class Movable {
 
-  constructor(
-    xPosition = 500,
-    yPosition = 500,
-    speed = 6
-  ) {
+  constructor() {
     this.position = {
-      x: xPosition,
-      y: yPosition,
+      x: POSITIONS.DEFAULT_X,
+      y: POSITIONS.DEFAULT_Y,
     };
     this.direction = {
       x: 0,
       y: 0,
     };
-    this.speed = speed;
+    this.speed = SPEEDS.DEFAULT;
   }
 
   update() {

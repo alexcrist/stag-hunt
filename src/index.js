@@ -12,6 +12,9 @@ const server = http.createServer(app);
 const io = socketio(server);
 const world = new World(io);
 world.addRabbit();
+world.addRabbit();
+world.addRabbit();
+world.addStag();
 
 app.get("/", (_, res) => {
   res.sendFile(__dirname + "/index.html");

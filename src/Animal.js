@@ -1,12 +1,16 @@
 const Movable = require("./Movable");
 const vector = require("./vector");
-const { ENTITY_TYPES } = require("./constants");
+const { ENTITY_TYPES, WORLD_BOUNDS } = require("./constants");
 const { getPhantomPosition } = require("./util");
 
 class Animal extends Movable {
 
   constructor(args) {
     super(args);
+    this.position = {
+      x: Math.random() * WORLD_BOUNDS.RIGHT,
+      y: Math.random() * WORLD_BOUNDS.BOTTOM
+    };
   }
 
   update = (worldState) => {

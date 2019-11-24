@@ -31,11 +31,25 @@ const CLIENT_ACTIONS = {
   KEY_DOWN: "keydown",
 };
 
+const POSITIONS = {
+  DEFAULT_X: 500,
+  DEFAULT_Y: 500
+};
+
+const SPEEDS = {
+  DEFAULT: 1,
+  PLAYER: 6,
+  RABBIT: 3,
+  STAG: 8
+};
+
 module.exports = {
   WORLD_BOUNDS,
   ENTITY_TYPES,
   SOCKET,
   SERVER,
   RENDER,
-  CLIENT_ACTIONS
+  CLIENT_ACTIONS,
+  POSITIONS,
+  SPEEDS
 };

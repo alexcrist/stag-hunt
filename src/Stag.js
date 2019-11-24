@@ -1,12 +1,12 @@
 const Animal = require("./Animal");
-const { ENTITY_TYPES } = require("./constants");
+const { ENTITY_TYPES, SPEEDS } = require("./constants");
 
 class Stag extends Animal {
 
   constructor() {
     super();
     this.type = ENTITY_TYPES.STAG;
-    this.speed = 8;
+    this.speed = SPEEDS.STAG;
   }
 }
 
