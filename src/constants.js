@@ -1,8 +1,8 @@
 const WORLD_BOUNDS = {
   TOP: 0,
-  BOTTOM: 1000,
+  BOTTOM: 700,
   LEFT: 0,
-  RIGHT: 1000,
+  RIGHT: 1400,
 };
 
 const ENTITY_TYPES = {

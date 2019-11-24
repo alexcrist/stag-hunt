@@ -1,3 +1,5 @@
+const { WORLD_BOUNDS } = require("./constants");
+
 class Movable {
 
   constructor(
@@ -17,9 +19,24 @@ class Movable {
   }
 
   update() {
+    let xPosition = this.position.x + (this.speed * this.direction.x);
+    let yPosition = this.position.y + (this.speed * this.direction.y);
+
+    if (xPosition < WORLD_BOUNDS.LEFT) {
+      xPosition = WORLD_BOUNDS.RIGHT + xPosition;
+    } else if (xPosition > WORLD_BOUNDS.RIGHT) {
+      xPosition = WORLD_BOUNDS.LEFT + xPosition - WORLD_BOUNDS.RIGHT;
+    }
+
+    if (yPosition > WORLD_BOUNDS.BOTTOM) {
+      yPosition = WORLD_BOUNDS.TOP + yPosition - WORLD_BOUNDS.BOTTOM;
+    } else if (yPosition < WORLD_BOUNDS.TOP) {
+      yPosition = WORLD_BOUNDS.BOTTOM + yPosition;
+    }
+
     this.position = {
-      x: this.position.x + (this.speed * this.direction.x),
-      y: this.position.y + (this.speed * this.direction.y),
+      x: xPosition,
+      y: yPosition,
     };
   }
 }

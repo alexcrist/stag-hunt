@@ -1,4 +1,5 @@
 const _ = require("lodash");
+const { WORLD_BOUNDS } = require("./constants");
 
 const normalize = vector => {
   const size = magnitude(vector);
@@ -35,25 +36,11 @@ const distance = (vector1, vector2) => {
   return magnitude(difference(vector1, vector2));
 };
 
-const getTransformedPosition = position => otherPosition => {
-  const wrappedPositionMultipliers = [[1, 1], [-1, 1], [1, -1], [-1, -1]];
-  const otherPositions = wrappedPositionMultipliers.map(([x, y]) => ({
-    x: x * otherPosition.x,
-    y: y * otherPosition.y
-  }));
-  const a = _.minBy(
-    otherPositions,
-    transformedPosition => distance(position, transformedPosition)
-  );
-  return a;
-};
-
 module.exports = {
   normalize,
   difference,
   magnitude,
   add,
   distance,
-  getTransformedPosition,
   scale
 };
