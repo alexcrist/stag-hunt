@@ -3,7 +3,7 @@ class Movable {
   constructor(
     xPosition = 500,
     yPosition = 500,
-    speed = 1
+    speed = 10
   ) {
     this.position = {
       x: xPosition,
@@ -17,7 +17,7 @@ class Movable {
   }
 
   update = () => {
-    this.postion = {
+    this.position = {
       x: this.position.x + (this.speed * this.direction.x),
       y: this.position.y + (this.speed * this.direction.y),
     };

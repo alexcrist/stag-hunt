@@ -23,7 +23,7 @@ const SERVER = {
 };
 
 const RENDER = {
-  REFRESH_INTERVAL: 1000
+  REFRESH_INTERVAL: 10
 };
 
 const CLIENT_ACTIONS = {
