@@ -4,8 +4,7 @@
     <title>Stag Hunt</title>
   </head>
   <body>
-    <h2>yote</h2>
-
+    <canvas id="canvas" width=1400 height=700></canvas>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -13,11 +12,31 @@
       const ON_KEY_DOWN = "keydown";
       const ON_KEY_UP = "keyup";
       const EVENT = "event";
+      const WORLDSTATE = "worldstate";
 
       const socket = io();
 
-      socket.on(EVENT, event => {
-        console.log(event);
+      socket.on(WORLDSTATE, worldState => {
+        console.log(worldState);
+
+        // Get the canvas
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+
+        // Set the background
+        context.fillStyle = "rgb(32, 128, 53)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Get the player data
+        const playerPosition = JSON.parse(worldState).entities[0].position;
+        const { x, y } = playerPosition;
+        // const x = Math.random() * 100;
+        // const y = Math.random() * 100;
+        const playerSize = 10;
+
+        // Draw the player
+        context.fillStyle = "rgb(235, 196, 145)";
+        context.fillRect(x, y, playerSize, playerSize);
       });
 
       document.addEventListener(ON_KEY_DOWN, (event) => {

@@ -13,6 +13,7 @@ const ENTITY_TYPES = {
 
 const SOCKET = {
   EVENT: "event",
+  WORLD_STATE: "worldstate",
   CONNECTION: "connection",
   DISCONNECT: "disconnect",
 };
@@ -22,7 +23,7 @@ const SERVER = {
 };
 
 const RENDER = {
-  REFRESH_INTERVAL: 1000
+  REFRESH_INTERVAL: 10
 };
 
 const CLIENT_ACTIONS = {
