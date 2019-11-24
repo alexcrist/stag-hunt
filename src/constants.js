@@ -38,10 +38,12 @@ const POSITIONS = {
 
 const SPEEDS = {
   DEFAULT: 1,
-  PLAYER: 6,
-  RABBIT: 3,
-  STAG: 8
+  PLAYER: 1.5,
+  RABBIT: 0.75,
+  STAG: 1.7
 };
+
+const ANIMAL_RUN_DISTANCE = 100;
 
 module.exports = {
   WORLD_BOUNDS,
@@ -51,5 +53,6 @@ module.exports = {
   RENDER,
   CLIENT_ACTIONS,
   POSITIONS,
-  SPEEDS
+  SPEEDS,
+  ANIMAL_RUN_DISTANCE
 };

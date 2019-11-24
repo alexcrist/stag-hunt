@@ -9,9 +9,15 @@
 
     <script>
 
+      const MAP_WIDTH = 1400;
+      const MAP_HEIGHT = 700;
+
+      const CENTER_X = 700;
+      const CENTER_Y = 350;
       const ON_KEY_DOWN = "keydown";
       const ON_KEY_UP = "keyup";
       const EVENT = "event";
+      const CONNECT = "connect";
       const WORLDSTATE = "worldstate";
       const ENTITY_TYPES = {
         PLAYER: "player",
@@ -20,15 +26,29 @@
       };
 
       const socket = io();
+      let socketId;
 
-      const drawEntity = (entity) => {
+      const drawEntity = (entity, myPosition) => {
         // Get the canvas
         const canvas = document.getElementById("canvas");
         const context = canvas.getContext("2d");
 
         // Get the entity data
         const entityPosition = entity.position;
-        const { x, y } = entityPosition;
+        let x = entityPosition.x - myPosition.x + CENTER_X;
+        let y = entityPosition.y - myPosition.y + CENTER_Y;
+        if (x < 0) {
+          x = MAP_WIDTH + x;
+        } else if (x > MAP_WIDTH) {
+          x = 0 + x - MAP_WIDTH;
+        }
+
+        if (y > MAP_HEIGHT) {
+          y = 0 + y - MAP_HEIGHT;
+        } else if (y < 0) {
+          y = MAP_HEIGHT + y;
+        }
+
         let playerSize = null;
 
         // Draw the entity
@@ -49,9 +69,11 @@
         context.fillRect(x - playerSize/2, y - playerSize/2, playerSize, playerSize);
       };
 
-      socket.on(WORLDSTATE, worldState => {
-        console.log(worldState);
+      socket.on(CONNECT, () => {
+        socketId = socket.id;
+      })
 
+      socket.on(WORLDSTATE, worldStateString => {
         // Get the canvas
         const canvas = document.getElementById("canvas");
         const context = canvas.getContext("2d");
@@ -61,13 +83,15 @@
         context.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw all players
-        for (const entity of JSON.parse(worldState).entities) {
-          drawEntity(entity);
+        const worldState = JSON.parse(worldStateString);
+        const entities = worldState.entities;
+        const me = entities.filter(entity => entity.id === socketId)[0];
+        for (const entity of entities) {
+          drawEntity(entity, me.position);
         };
       });
 
       document.addEventListener(ON_KEY_DOWN, (event) => {
-        console.log("Key down:", event.key);
         socket.emit(EVENT, {
           action: ON_KEY_DOWN,
           key: event.key
@@ -76,7 +100,6 @@
 
 
       document.addEventListener(ON_KEY_UP, (event) => {
-        console.log("Key up:", event.key);
         socket.emit(EVENT, {
           action: ON_KEY_UP,
           key: event.key

@@ -1,6 +1,6 @@
 const Movable = require("./Movable");
 const vector = require("./vector");
-const { ENTITY_TYPES, WORLD_BOUNDS } = require("./constants");
+const { ENTITY_TYPES, WORLD_BOUNDS, ANIMAL_RUN_DISTANCE } = require("./constants");
 const { getPhantomPosition } = require("./util");
 
 class Animal extends Movable {
@@ -29,7 +29,7 @@ class Animal extends Movable {
       return closest;
     }, 1000);
 
-    if (closestDistance > 500) {
+    if (closestDistance > ANIMAL_RUN_DISTANCE) {
       this.direction = { x: 0, y: 0 };
       return;
     }

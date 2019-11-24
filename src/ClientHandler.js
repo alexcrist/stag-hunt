@@ -10,8 +10,6 @@ class ClientHandler {
   }
 
   handleEvent = (event) => {
-    console.log(`New event from (${this.id})`, event);
-
     if (event.action === CLIENT_ACTIONS.KEY_DOWN) {
       this.player.handleKeyDown(event.key);
     }

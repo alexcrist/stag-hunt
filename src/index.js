@@ -22,7 +22,7 @@ app.get("/", (_, res) => {
 
 io.on(SOCKET.CONNECTION, (socket) => {
   // Create a new player
-  const player = new Player();
+  const player = new Player(socket.id);
   new ClientHandler(socket, player);
   world.addPlayer(player);
 

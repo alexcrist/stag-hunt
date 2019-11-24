@@ -1,12 +1,11 @@
-const uuid = require("uuid/v4");
 const Movable = require("./Movable");
 const { ENTITY_TYPES, SPEEDS } = require("./constants");
 
 class Player extends Movable {
 
-  constructor() {
+  constructor(id) {
     super();
-    this.id = uuid().slice(0, 7);
+    this.id = id;
     this.type = ENTITY_TYPES.PLAYER;
     this.speed = SPEEDS.PLAYER;
     this.color = "rgb("
