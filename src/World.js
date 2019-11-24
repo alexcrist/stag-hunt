@@ -1,6 +1,6 @@
 const _ = require("lodash");
 
-const { SOCKET } = require("./constants");
+const { SOCKET, ENTITY_TYPES } = require("./constants");
 
 class World {
 
@@ -28,6 +28,10 @@ class World {
   }
 
   update = () => {
+    for (const entity of this.worldState.entities) {
+      entity.update(this.worldState);
+    }
+
     this.io.emit(SOCKET.WORLD_STATE, JSON.stringify(this.worldState));
   }
 }
