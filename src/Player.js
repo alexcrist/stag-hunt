@@ -8,6 +8,12 @@ class Player extends Movable {
     super();
     this.id = uuid().slice(0, 7);
     this.type = ENTITY_TYPES.PLAYER;
+    this.color = "rgb("
+      + Math.round(Math.random() * 256).toString() + ", "
+      + Math.round(Math.random() * 256).toString() + ", "
+      + Math.round(Math.random() * 256).toString()
+      + ")";
+    // this.color
   }
 
   handleKeyDown = (key) => {

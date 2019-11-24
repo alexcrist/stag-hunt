@@ -29,20 +29,23 @@
         // Get the entity data
         const entityPosition = entity.position;
         const { x, y } = entityPosition;
+        let playerSize = null;
         // const x = Math.random() * 100;
         // const y = Math.random() * 100;
-        const playerSize = 10;
 
         // Draw the entity
         switch (entity.type) {
           case ENTITY_TYPES.PLAYER:
-            context.fillStyle = "rgb(235, 196, 145)";
+            context.fillStyle = entity.color;
+            playerSize = 10;
             break;
           case ENTITY_TYPES.RABBIT:
             context.fillStyle = "rgb(196, 188, 183)";
+            playerSize = 4;
             break;
           case ENTITY_TYPES.STAG:
             context.fillStyle = "rgb(92, 59, 36)";
+            playerSize = 8;
             break;
         };
         context.fillRect(x, y, playerSize, playerSize);
