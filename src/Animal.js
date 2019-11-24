@@ -19,17 +19,12 @@ class Animal extends Movable {
     const playerPositions = worldState.entities
       .filter(entity => entity.type === ENTITY_TYPES.PLAYER)
       .map(player => player.position)
-      .map(getPhantomPosition(this.position));
+      .map(getPhantomPosition(this.position))
+      .filter(playerPosition => (
+        vector.distance(playerPosition, this.position) < ANIMAL_RUN_DISTANCE
+      ));
 
-    const closestDistance = playerPositions.reduce((closest, position) => {
-      const distance = vector.distance(this.position, position);
-      if (distance < closest) {
-        return distance;
-      }
-      return closest;
-    }, 1000);
-
-    if (closestDistance > ANIMAL_RUN_DISTANCE) {
+    if (playerPositions.length === 0) {
       this.direction = { x: 0, y: 0 };
       return;
     }
