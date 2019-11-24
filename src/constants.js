@@ -40,7 +40,7 @@ const SPEEDS = {
   DEFAULT: 1,
   PLAYER: 1.5,
   RABBIT: 0.75,
-  STAG: 1.7
+  STAG: 1.51
 };
 
 const NUM_ANIMALS = {

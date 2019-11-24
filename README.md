@@ -10,3 +10,7 @@
 * Feedback of succesful catch
 * Deploy
 * Hype
+* Animal meandering
+* Back drop (maintain pixel aesthetic)
+  * Lake / river (obstacle, slower speed)
+* Document code

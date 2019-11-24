@@ -97,7 +97,8 @@
         // Draw all players
         const worldState = JSON.parse(worldStateString);
         const entities = worldState.entities;
-        const me = entities.filter(entity => entity.id === socketId)[0];
+        // const me = entities.filter(entity => entity.id === socketId)[0];
+        const me = entities.filter(entity => entity.type === "stag")[0];
         for (const entity of entities) {
           drawEntity(entity, me.position);
         };
@@ -109,7 +110,6 @@
           key: event.key
         });
       });
-
 
       document.addEventListener(ON_KEY_UP, (event) => {
         socket.emit(EVENT, {
