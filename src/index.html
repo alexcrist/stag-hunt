@@ -6,6 +6,7 @@
   <body>
     <h2>yote</h2>
 
+    <canvas id="canvas" width=800 height=800></canvas>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -36,6 +37,11 @@
           key: event.key
         });
       });
+
+      const canvas = document.getElementById("canvas");
+      const context = canvas.getContext("2d");
+      context.fillStyle = "rgb(200, 0, 0)";
+      context.fillRect(10, 10, 50, 50);
 
     </script>
   </body>
