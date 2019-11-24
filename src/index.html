@@ -2,6 +2,12 @@
 <html>
   <head>
     <title>Stag Hunt</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body>
     <canvas id="canvas" width=1400 height=700></canvas>
@@ -12,8 +18,8 @@
       const MAP_WIDTH = 1400;
       const MAP_HEIGHT = 700;
 
-      const CENTER_X = 700;
-      const CENTER_Y = 350;
+      const CENTER_X = MAP_WIDTH / 2;;
+      const CENTER_Y = MAP_HEIGHT / 2;
       const ON_KEY_DOWN = "keydown";
       const ON_KEY_UP = "keyup";
       const EVENT = "event";
@@ -49,6 +55,9 @@
           y = MAP_HEIGHT + y;
         }
 
+        x = x * window.innerWidth / MAP_WIDTH;
+        y = y * window.innerHeight / MAP_HEIGHT;
+
         let playerSize = null;
 
         // Draw the entity
@@ -77,6 +86,9 @@
         // Get the canvas
         const canvas = document.getElementById("canvas");
         const context = canvas.getContext("2d");
+
+        context.canvas.width = window.innerWidth;
+        context.canvas.height = window.innerHeight;
 
         // Set the background
         context.fillStyle = "rgb(32, 128, 53)";

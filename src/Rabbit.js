@@ -1,5 +1,5 @@
 const Animal = require("./Animal");
-const { ENTITY_TYPES, SPEEDS } = require("./constants");
+const { ENTITY_TYPES, SPEEDS, ANIMAL_RUN_DISTANCE } = require("./constants");
 
 class Rabbit extends Animal {
 
@@ -7,6 +7,7 @@ class Rabbit extends Animal {
     super();
     this.type = ENTITY_TYPES.RABBIT;
     this.speed = SPEEDS.RABBIT;
+    this.animalRunDistance = ANIMAL_RUN_DISTANCE.RABBIT;
   }
 }
 

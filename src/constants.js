@@ -43,7 +43,15 @@ const SPEEDS = {
   STAG: 1.7
 };
 
-const ANIMAL_RUN_DISTANCE = 100;
+const NUM_ANIMALS = {
+  RABBITS: 20,
+  STAGS: 1
+};
+
+const ANIMAL_RUN_DISTANCE = {
+  RABBIT: 50,
+  STAG: 100
+};
 
 module.exports = {
   WORLD_BOUNDS,
@@ -54,5 +62,6 @@ module.exports = {
   CLIENT_ACTIONS,
   POSITIONS,
   SPEEDS,
-  ANIMAL_RUN_DISTANCE
+  ANIMAL_RUN_DISTANCE,
+  NUM_ANIMALS
 };

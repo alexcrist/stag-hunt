@@ -5,16 +5,19 @@ const socketio = require("socket.io")
 const World = require("./World");
 const Player = require("./Player");
 const ClientHandler = require("./ClientHandler");
-const { SOCKET, SERVER, RENDER } = require("./constants");
+const { SOCKET, SERVER, RENDER, NUM_ANIMALS } = require("./constants");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 const world = new World(io);
-world.addRabbit();
-world.addRabbit();
-world.addRabbit();
-world.addStag();
+for (let i = 0; i < NUM_ANIMALS.RABBITS; i++) {
+  console.log("R")
+  world.addRabbit();
+}
+for (let i = 0; i < NUM_ANIMALS.STAGS; i++) {
+  world.addStag();
+}
 
 app.get("/", (_, res) => {
   res.sendFile(__dirname + "/index.html");

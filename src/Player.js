@@ -1,5 +1,6 @@
 const Movable = require("./Movable");
 const { ENTITY_TYPES, SPEEDS } = require("./constants");
+const vector = require("./vector");
 
 class Player extends Movable {
 
@@ -18,49 +19,51 @@ class Player extends Movable {
   handleKeyDown = (key) => {
     switch (key.toLowerCase()) {
       case "w":
-        this.direction = { x: 0, y: -1 };
+        this.direction.y = -1;
         break;
 
       case "a":
-        this.direction = { x: -1, y: 0 };
+        this.direction.x = -1;
         break;
 
       case "s":
-        this.direction = { x: 0, y: 1 };
+        this.direction.y = 1;
         break;
 
       case "d":
-        this.direction = { x: 1, y: 0 };
+        this.direction.x = 1;
         break;
     }
+    this.direction = vector.normalize(this.direction);
   }
 
   handleKeyUp = (key) => {
     switch (key.toLowerCase()) {
       case "w":
-        if (this.direction.x === 0 && this.direction.y === -1) {
-          this.direction = { x: 0, y: 0 };
+        if (this.direction.y < 0) {
+          this.direction.y = 0;
         }
         break;
 
       case "a":
-        if (this.direction.x === -1 && this.direction.y === 0) {
-          this.direction = { x: 0, y: 0 };
+        if (this.direction.x < 0) {
+          this.direction.x = 0;
         }
         break;
 
       case "s":
-        if (this.direction.x === 0 && this.direction.y === 1) {
-          this.direction = { x: 0, y: 0 };
+        if (this.direction.y > 0) {
+          this.direction.y = 0;
         }
         break;
 
       case "d":
-        if (this.direction.x === 1 && this.direction.y === 0) {
-          this.direction = { x: 0, y: 0 };
+        if (this.direction.x > 0) {
+          this.direction.x = 0;
         }
         break;
     }
+    this.direction = vector.normalize(this.direction);
   }
 }
 

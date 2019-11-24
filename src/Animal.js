@@ -1,6 +1,6 @@
 const Movable = require("./Movable");
 const vector = require("./vector");
-const { ENTITY_TYPES, WORLD_BOUNDS, ANIMAL_RUN_DISTANCE } = require("./constants");
+const { ENTITY_TYPES, WORLD_BOUNDS } = require("./constants");
 const { getPhantomPosition } = require("./util");
 
 class Animal extends Movable {
@@ -21,7 +21,7 @@ class Animal extends Movable {
       .map(player => player.position)
       .map(getPhantomPosition(this.position))
       .filter(playerPosition => (
-        vector.distance(playerPosition, this.position) < ANIMAL_RUN_DISTANCE
+        vector.distance(playerPosition, this.position) < this.animalRunDistance
       ));
 
     if (playerPositions.length === 0) {
