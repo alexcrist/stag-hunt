@@ -16,7 +16,7 @@ class Movable {
     this.speed = speed;
   }
 
-  update = () => {
+  update() {
     this.position = {
       x: this.position.x + (this.speed * this.direction.x),
       y: this.position.y + (this.speed * this.direction.y),

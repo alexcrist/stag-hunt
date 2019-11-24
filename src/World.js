@@ -1,6 +1,7 @@
 const _ = require("lodash");
 
 const { SOCKET, ENTITY_TYPES } = require("./constants");
+const Rabbit = require("./Rabbit");
 
 class World {
 
@@ -12,6 +13,10 @@ class World {
 
     console.log("World created.");
   }
+
+  addRabbit = () => {
+    this.worldState.entities.push(new Rabbit());
+  };
 
   addPlayer = (player) => {
     console.log(`Adding player (${player.id})...`);
