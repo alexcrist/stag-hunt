@@ -4,6 +4,7 @@ const socketio = require("socket.io")
 
 const World = require("./World");
 const Player = require("./Player");
+const ClientHandler = require("./ClientHandler");
 
 const PORT = 3000;
 const CONNECTION = "connection";
@@ -18,9 +19,10 @@ app.get("/", (_, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-io.on(CONNECTION, socket => {
+io.on(CONNECTION, (socket) => {
   // Create a new player
-  const player = new Player(socket);
+  const player = new Player();
+  new ClientHandler(socket, player);
   world.addPlayer(player);
 
   // Destroy the player when they disconnect
@@ -30,3 +32,5 @@ io.on(CONNECTION, socket => {
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
+
+setInterval(world.update, 1000);

@@ -1,6 +1,7 @@
 const _ = require("lodash");
 
-const BROADCAST = "broadcast";
+const EVENT = "event";
+const SPEED = 1;
 
 class World {
 
@@ -13,18 +14,12 @@ class World {
     console.log("World created.");
   }
 
-  addPlayer(player) {
+  addPlayer = (player) => {
     console.log(`Adding player (${player.id})...`);
-    this.worldState = {
-      ...this.worldState,
-      players: [
-        ...this.worldState.players,
-        player
-      ]
-    };
+    this.worldState.players.push(player);
   }
 
-  removePlayer(playerId) {
+  removePlayer = (playerId) => {
     console.log(`Removing player (${playerId})...`)
     const playerIndex = _.findIndex(
       this.worldState.players,
@@ -33,8 +28,8 @@ class World {
     this.worldState.players.splice(playerIndex, 1);
   }
 
-  update() {
-    this.io.emit(BROADCAST, this.worldState);
+  update = () => {
+    this.io.emit(EVENT, JSON.stringify(this.worldState));
   }
 }
 

@@ -4,16 +4,37 @@
     <title>Stag Hunt</title>
   </head>
   <body>
+    <h2>yote</h2>
+
     <script src="/socket.io/socket.io.js"></script>
+
     <script>
 
       const ON_KEY_DOWN = "keydown";
+      const ON_KEY_UP = "keyup";
+      const EVENT = "event";
 
       const socket = io();
 
-      document.addEventListener(ON_KEY_DOWN, event => {
-        console.log("Key press:", event.key);
-        socket.emit("event", event.key);
+      socket.on(EVENT, event => {
+        console.log(event);
+      });
+
+      document.addEventListener(ON_KEY_DOWN, (event) => {
+        console.log("Key down:", event.key);
+        socket.emit(EVENT, {
+          action: ON_KEY_DOWN,
+          key: event.key
+        });
+      });
+
+
+      document.addEventListener(ON_KEY_UP, (event) => {
+        console.log("Key up:", event.key);
+        socket.emit(EVENT, {
+          action: ON_KEY_UP,
+          key: event.key
+        });
       });
 
     </script>

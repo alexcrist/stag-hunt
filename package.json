@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "author": "",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "start": "nodemon src/index.js"
   },
   "dependencies": {

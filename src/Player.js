@@ -1,19 +1,70 @@
 const uuid = require("uuid/v4");
 
-const EVENT = "event";
+const ACTIONS = {
+  STILL: "still",
+  UP: "up",
+  RIGHT: "right",
+  DOWN: "down",
+  LEFT: "left"
+};
 
 class Player {
 
-  constructor(socket) {
-    this.socket = socket;
+  constructor() {
     this.id = uuid().slice(0, 7);
-    socket.on(EVENT, this.handleEvent);
-
-    console.log(`New player created (${this.id}).`)
+    this.currentAction = ACTIONS.STILL;
+    this.position = {
+      x: 0,
+      y: 0
+    };
   }
 
-  handleEvent(event) {
-    console.log(`New event from (${this.id})`, event);
+  handleKeyDown = (key) => {
+    switch (key.toLowerCase()) {
+      case "w":
+        this.currentAction = ACTIONS.UP;
+        break;
+
+      case "a":
+        this.currentAction = ACTIONS.LEFT;
+        break;
+
+      case "s":
+        this.currentAction = ACTIONS.DOWN;
+        break;
+
+      case "d":
+        this.currentAction = ACTIONS.RIGHT;
+        break;
+    }
+  }
+
+  handleKeyUp = (key) => {
+    switch (key.toLowerCase()) {
+      case "w":
+        if (this.currentAction === ACTIONS.UP) {
+          this.currentAction = ACTIONS.STILL;
+        }
+        break;
+
+      case "a":
+        if (this.currentAction === ACTIONS.LEFT) {
+          this.currentAction = ACTIONS.STILL;
+        }
+        break;
+
+      case "s":
+        if (this.currentAction === ACTIONS.DOWN) {
+          this.currentAction = ACTIONS.STILL;
+        }
+        break;
+
+      case "d":
+        if (this.currentAction === ACTIONS.RIGHT) {
+          this.currentAction = ACTIONS.STILL;
+        }
+        break;
+    }
   }
 }
 
