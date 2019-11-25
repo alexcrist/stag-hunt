@@ -25,3 +25,5 @@ Make the stag-hunt a race to get points. Each player is not racing against one a
 ### More games
 
 Create a suite of stag-hunt style games for different game theory games (just games with Nash equilibria that can involve cooperation rather than only defection)
+
+* ["Battle of the Sexes"](https://en.wikipedia.org/wiki/Battle_of_the_sexes_(game_theory)) (with coin flipping device to promote a "correlated equilibrium")
