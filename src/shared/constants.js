@@ -37,7 +37,7 @@ export const SERVER = {
 };
 
 export const RENDER = {
-  REFRESH_INTERVAL: 10
+  REFRESH_INTERVAL: 34
 };
 
 export const ANIMAL_RUN_DISTANCE = {
@@ -58,10 +58,10 @@ export const WORLD_BOUNDS = {
 };
 
 export const SPEEDS = {
-  DEFAULT: 1,
-  PLAYER: 1.5,
-  RABBIT: 0.75,
-  STAG: 1.51
+  DEFAULT: 2,
+  PLAYER: 4,
+  RABBIT: 2,
+  STAG: 4.1
 };
 
 export const NUM_ANIMALS = {
