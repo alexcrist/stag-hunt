@@ -1,8 +1,8 @@
-const Movable = require("./Movable");
-const { ENTITY_TYPES, SPEEDS } = require("./constants");
-const vector = require("./vector");
+import Movable from "./Movable";
+import vector from "../../shared/vector";
+import { ENTITY_TYPES, SPEEDS } from "../../shared/constants";
 
-class Player extends Movable {
+export default class Player extends Movable {
 
   constructor(id) {
     super();
@@ -16,7 +16,7 @@ class Player extends Movable {
       + ")";
   }
 
-  handleKeyDown = (key) => {
+  handleKeyDown(key) {
     switch (key.toLowerCase()) {
       case "w":
         this.direction.y = -1;
@@ -37,7 +37,7 @@ class Player extends Movable {
     this.direction = vector.normalize(this.direction);
   }
 
-  handleKeyUp = (key) => {
+  handleKeyUp(key) {
     switch (key.toLowerCase()) {
       case "w":
         if (this.direction.y < 0) {
@@ -66,5 +66,3 @@ class Player extends Movable {
     this.direction = vector.normalize(this.direction);
   }
 }
-
-module.exports = Player;

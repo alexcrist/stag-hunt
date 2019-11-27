@@ -1,9 +1,9 @@
-const _ = require("lodash");
+import _ from "lodash";
 
-const vector = require("./vector");
-const { WORLD_BOUNDS } = require("./constants");
+import vector from "../shared/vector";
+import { WORLD_BOUNDS } from "../shared/constants";
 
-const getPhantomPosition = position => otherPosition => {
+export const getPhantomPosition = position => otherPosition => {
   const wrappedPositionMultipliers = [
     [0, 0],
     [-1, 0],
@@ -26,6 +26,3 @@ const getPhantomPosition = position => otherPosition => {
   return a;
 };
 
-module.exports = {
-  getPhantomPosition
-};

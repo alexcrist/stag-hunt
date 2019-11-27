@@ -1,9 +1,9 @@
-const Movable = require("./Movable");
-const vector = require("./vector");
-const { ENTITY_TYPES, WORLD_BOUNDS } = require("./constants");
-const { getPhantomPosition } = require("./util");
+import vector from "../../shared/vector";
+import Movable from "./Movable";
+import { getPhantomPosition } from "../util";
+import { ENTITY_TYPES, WORLD_BOUNDS } from "../../shared/constants";
 
-class Animal extends Movable {
+export default class Animal extends Movable {
 
   constructor(args) {
     super(args);
@@ -13,7 +13,7 @@ class Animal extends Movable {
     };
   }
 
-  update = (worldState) => {
+  update(worldState) {
     super.update();
 
     const playerPositions = worldState.entities
@@ -47,5 +47,3 @@ class Animal extends Movable {
     this.direction = newDirection;
   };
 }
-
-module.exports = Animal;

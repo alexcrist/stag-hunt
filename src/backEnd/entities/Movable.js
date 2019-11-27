@@ -1,6 +1,10 @@
-const { WORLD_BOUNDS, POSITIONS, SPEEDS } = require("./constants");
+import {
+  WORLD_BOUNDS,
+  POSITIONS,
+  SPEEDS
+} from "../../shared/constants";
 
-class Movable {
+export default class Movable {
 
   constructor() {
     this.position = {
@@ -36,5 +40,3 @@ class Movable {
     };
   }
 }
-
-module.exports = Movable;

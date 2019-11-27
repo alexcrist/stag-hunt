@@ -1,6 +1,3 @@
-const _ = require("lodash");
-const { WORLD_BOUNDS } = require("./constants");
-
 const normalize = vector => {
   const size = magnitude(vector);
   if (size !== 0) {
@@ -36,11 +33,11 @@ const distance = (vector1, vector2) => {
   return magnitude(difference(vector1, vector2));
 };
 
-module.exports = {
+export default {
   normalize,
   difference,
-  magnitude,
   add,
-  distance,
-  scale
+  magnitude,
+  scale,
+  distance
 };

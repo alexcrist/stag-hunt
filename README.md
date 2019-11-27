@@ -1,5 +1,18 @@
 # Stag Hunt
 
+## How to devlop
+
+* Open two terminal tabs
+
+* In one, run `yarn start:dev`
+  * This starts up the back end
+  * If a change is made to the back end files, the server restarts automatically
+
+* In the other tab, run `yarn bundle:dev`
+  * This bundles all the front end .js files into a single `bundle.js` payload
+    which can be served to the front end
+  * If a change is made to the front end files, the bundler will rerun automatically
+
 ## TODO
 
 * Splash screen, "Hunt the stag together (wasd)"
@@ -15,7 +28,7 @@
   * Lake / river (obstacle, slower speed)
 * Document code
 
-## IDEAS
+## Ideas
 
 ### The race
 

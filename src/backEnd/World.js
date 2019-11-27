@@ -1,10 +1,10 @@
-const _ = require("lodash");
+import _ from "lodash";
 
-const { SOCKET } = require("./constants");
-const Rabbit = require("./Rabbit");
-const Stag = require("./Stag");
+import Stag from "./entities/Stag";
+import Rabbit from "./entities/Rabbit";
+import { SOCKET_EVENTS, NUM_ANIMALS } from "../shared/constants";
 
-class World {
+export default class World {
 
   constructor(io) {
     this.io = io;
@@ -12,23 +12,30 @@ class World {
       entities: []
     };
 
+    for (let i = 0; i < NUM_ANIMALS.RABBITS; i++) {
+      this.addRabbit();
+    }
+    for (let i = 0; i < NUM_ANIMALS.STAGS; i++) {
+      this.addStag();
+    }
+
     console.log("World created.");
   }
 
-  addRabbit = () => {
+  addRabbit() {
     this.worldState.entities.push(new Rabbit());
   };
 
-  addStag = () => {
+  addStag() {
     this.worldState.entities.push(new Stag());
   };
 
-  addPlayer = (player) => {
+  addPlayer(player) {
     console.log(`Adding player (${player.id})...`);
     this.worldState.entities.push(player);
   }
 
-  removePlayer = (playerId) => {
+  removePlayer(playerId) {
     console.log(`Removing player (${playerId})...`)
     const playerIndex = _.findIndex(
       this.worldState.entities,
@@ -37,13 +44,14 @@ class World {
     this.worldState.entities.splice(playerIndex, 1);
   }
 
-  update = () => {
+  update() {
     for (const entity of this.worldState.entities) {
       entity.update(this.worldState);
     }
 
-    this.io.emit(SOCKET.WORLD_STATE, JSON.stringify(this.worldState));
+    this.io.emit(
+      SOCKET_EVENTS.WORLD_STATE,
+      JSON.stringify(this.worldState)
+    );
   }
 }
-
-module.exports = World;
