@@ -8,6 +8,7 @@ import Player from "./entities/Player";
 import ClientHandler from "./ClientHandler";
 import { SOCKET_EVENTS, SERVER, RENDER } from "../shared/constants";
 
+const port = process.env.PORT || SERVER.PORT;
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -37,8 +38,8 @@ io.on(SOCKET_EVENTS.CONNECTION, (socket) => {
   socket.on(SOCKET_EVENTS.DISCONNECT, () => world.removePlayer(player.id));
 });
 
-server.listen(SERVER.PORT, () => {
-  console.log(`Listening on port ${SERVER.PORT}`);
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
 
 setInterval(() => world.update(), RENDER.REFRESH_INTERVAL);
