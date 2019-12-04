@@ -39,6 +39,7 @@ Make the stag-hunt a race to get points. Each player is not racing against one a
 * Randomize animal speed
 * Randomize animal rewards
 * Have animals slow down over time (tire?)
+* Record level of cooperation along with final score?
 * Allow some kind of user generated content? Setting up obstacles?
 
 ### Stretch ideas
